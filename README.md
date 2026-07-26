@@ -3,7 +3,7 @@
 Interne Planungshilfe zur fächerübergreifenden Verankerung von Medien- und Informatikkompetenzen im Zyklus 3.
 
 Online-Version:
-https://schulemario-cmyk.github.io/praxisleitfaden-mi/
+https://mi-praxisleitfaden.github.io/praxisleitfaden-mi/
 
 ## Inhalt
 
