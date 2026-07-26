@@ -13,6 +13,7 @@ Enthalten sind:
 - schnelle Fächerübersicht mit Filter nach Fach und Quartal
 - Praxisbeispiele mit MI-Kompetenzbezug
 - Anwendungskompetenzen aus Fachlehrmitteln
+- Zusatzmaterialien von umat.schularena.ch mit Direktlinks
 - einfache Lernnachweise nach Schuljahr
 - Quellen und KI-Hinweis
 
@@ -28,7 +29,7 @@ Aktualisierung:
 
 ## Status
 
-Version: 2026-07-07  
+Version: 2026-07-26  
 Status: Arbeitsfassung
 
 ## Hinweis
