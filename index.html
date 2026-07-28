@@ -441,10 +441,12 @@ body.short-view .long-only{display:none!important}
 body.short-view .short-only{display:block!important}
 body.short-view #sprachstarken,
 body.short-view #links,
+body.short-view #praxis,
 body.short-view #kategorie-summary,
 body.short-view #praxis > .note.long-only,
 body.short-view .legend.long-only,
 body.short-view nav.toc a[href="#sprachstarken"],
+body.short-view nav.toc a[href="#praxis"],
 body.short-view nav.toc a[href="#links"]{display:none!important}
 body.short-view details.example .detail-body{display:none!important}
 body.short-view details.example > summary:before{display:none!important}
@@ -549,7 +551,7 @@ body.short-view .revealed-by-link{
 </div></nav>
 <section id="einsatz">
 <h2>1. Einsatz des Leitfadens</h2>
-<div class="note short-only"><strong>Kurzversion:</strong> Fach und Quartal links wählen, passendes Praxisbeispiel öffnen und Lernprodukt übernehmen. Die Langversion zeigt zusätzlich Herleitung, Fachlehrmittelanschlüsse, Kompetenztexte und vollständiges Linkverzeichnis.</div>
+<div class="note short-only"><strong>Kurzversion:</strong> Fach und Quartal links wählen und in der schnellen Fächerübersicht ein passendes Praxisbeispiel öffnen. Der Link wechselt direkt zur Detailkarte in der Langversion.</div>
 <p>Der Leitfaden unterstützt Lehrpersonen aller Fachbereiche dabei, Medien- und Informatikkompetenzen sowie fächerübergreifende Anwendungskompetenzen im bestehenden Fachunterricht gezielt aufzubauen, anzuwenden und zu festigen. Ausgangspunkt bleibt immer der Fachinhalt. Die Kompetenz wird nicht als Zusatzthema behandelt, sondern an einem passenden fachlichen Auftrag sichtbar gemacht.</p>
 <div class="note long-only"><strong>Leselogik:</strong> Zuerst links in der Navigation ein oder mehrere Fächer und bei Bedarf ein MI-Quartal wählen. Danach zeigt die schnelle Fächerübersicht nur passende Einstiege. Im Detailteil sind die dazugehörigen Praxisbeispiele einklappbar: sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, Zeitbedarf, vollständiger Kompetenzbezug und Quellen erscheinen nach dem Öffnen.</div>
 <div class="note"><strong>Arbeitsprinzip:</strong> Fachinhalt → MI-Kompetenz → konkreter Auftrag → sichtbarer Nachweis. Eine Kompetenz gilt nur dann als gestärkt, wenn sie im Auftrag bewusst angeleitet und im Lernprodukt erkennbar wird.</div><div class="competency-types"><div class="competency-type"><h3>MI.1 Medien</h3><p>Mediennutzung, Medienwirkung, Medienkritik, Produktion, Veröffentlichung, Kommunikation und Kooperation.</p></div><div class="competency-type"><h3>MI.2 Informatik</h3><p>Datenstrukturen, Algorithmen, Informatiksysteme, sichere Datenverarbeitung, Speicherorte und Verschlüsselung.</p></div><div class="competency-type"><h3>Anwendungskompetenzen</h3><p>Fächerübergreifende Nutzung digitaler Werkzeuge: schreiben, überarbeiten, präsentieren, recherchieren, Quellen nutzen, Tabellenkalkulation, Dateiablage und Zusammenarbeit.</p></div></div><div class="note long-only"><strong>Transferprinzip:</strong> Die Quartalsangaben zeigen den passenden MI-Anschluss: Aufbau im Fach, Festigung nach Connected 3 oder 4, oder schulweite Basis. Damit wird sichtbar, wann ein Fachauftrag eine im MI-Unterricht behandelte Kompetenz gezielt aufnimmt.</div>
@@ -567,7 +569,7 @@ body.short-view .revealed-by-link{
 </table>
 <div class="note"><strong>Schulweite Basiskompetenzen und Anwendungskompetenzen:</strong> Dateiablage, Dateinamen, Teilen von Dokumenten, Textüberarbeitung, Präsentieren, Tabellenkalkulation, Recherche sowie Quellen- und Lizenznachweise betreffen alle Fächer. Diese Punkte werden in der Fächerübersicht als „alle Fächer“ oder in den einzelnen Fachbeispielen ausgewiesen und sollen nicht als Zusatzprojekt, sondern als gemeinsamer Mindeststandard genutzt werden.</div>
 </section>
-<section id="faecher"><h2>2. Schnelle Fächerübersicht als Auswahlhilfe</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Tabelle zeigt nur Fach, Priorität, Praxisbeispiel, MI-Anschluss, Funktion und Lernprodukt. Zeitbedarf und Kompetenzdetails bleiben in der Langversion.</p>
+<section id="faecher"><h2>2. Schnelle Fächerübersicht als Auswahlhilfe</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Tabelle ist der zentrale Einstieg. Ein Klick auf ein Praxisbeispiel wechselt automatisch in die Langversion und öffnet die vollständige Detailkarte.</p>
 <p class="long-only">Diese Übersicht zeigt pro Fach ausgewählte Einstiege. Zuerst stehen konkrete Praxisbeispiele, danach passende Anschlüsse aus den Fachlehrmitteln und unterrichtsfertige Zusatzmaterialien. So sieht eine Lehrperson zuerst, welches Lehrmittelkapitel ohnehin im Fachunterricht vorkommt, welche Anwendungskompetenz darin steckt und welches Praxisbeispiel daran anschliessen kann. Die Spalten MI-Anschluss und Funktion machen sichtbar, wann ein Beispiel als Aufbau im Fach, als Festigung nach Connected 3 oder 4 oder als schulweite Basis sinnvoll ist.</p>
 <h3>2.1 Auswahl nach Fach und Praxisbeispiel</h3>
 <table id="subject-overview-table">
@@ -683,7 +685,7 @@ body.short-view .revealed-by-link{
 <table id="learning-evidence-table"><thead><tr><th>Schuljahr / Quartal</th><th>MI-Bezug</th><th>geeigneter Fach-Lernnachweis</th></tr></thead><tbody><tr data-quarter="7Q1"><td>7. Klasse · Q1</td><td>digitale Grundlagen, Dateiablage, Teams/OneDrive, Online-Bewertungen</td><td>Dateiablage-Check, Teams-Abgabe, Quellenblatt oder digitaler Mini-Auftrag</td></tr><tr data-quarter="7Q2"><td>7. Klasse · Q2</td><td>Social Media, Kommunikation, persönliche Daten, Feed-Algorithmen</td><td>ERG-Regelkatalog, Deutsch-Stellungnahme, Klassenchat-Regeln</td></tr><tr data-quarter="7Q3"><td>7. Klasse · Q3</td><td>Informatiksysteme, Sensoren, KI-Grundlagen, Algorithmen und Programmieren</td><td>NT-Sensorenskizze, KI/Programm-Vergleich, Ablaufdiagramm, Fehlerprotokoll</td></tr><tr data-quarter="7Q4"><td>7. Klasse · Q4</td><td>Bildsprache, Werbung, Urheberrecht, Datenbanken</td><td>BG-Bildanalyse, Lizenznachweis, kleine Datentabelle</td></tr><tr data-quarter="8Q1"><td>8. Klasse · Q1</td><td>Transfer: Dateien, Recherche, Quellen, sichere Kommunikation</td><td>Recherche- und Quellencheck, digitale Abgabe, Kommunikationsregeln</td></tr><tr data-quarter="8Q2"><td>8. Klasse · Q2</td><td>Transfer: Medienproduktion, Bild, Audio, Präsentation, Urheberrecht</td><td>Medienprodukt mit Quellen-/Lizenznachweis, Präsentation</td></tr><tr data-quarter="8Q3"><td>8. Klasse · Q3</td><td>Transfer: Daten erfassen, Tabellen, Diagramme, Auswertung</td><td>Datendossier, Umfrageauswertung, Diagrammkommentar</td></tr><tr data-quarter="8Q4"><td>8. Klasse · Q4</td><td>Transfer: Algorithmen, Ablaufdiagramme, Automatisierung, Problemlösen</td><td>Ablaufdiagramm, Sortier-/Suchaufgabe, Programmier-Miniauftrag</td></tr><tr data-quarter="9Q1"><td>9. Klasse · Q1</td><td>Sortier- und Suchalgorithmen</td><td>Algorithmusvergleich, Ablaufdiagramm, Testaufgabe</td></tr><tr data-quarter="9Q2"><td>9. Klasse · Q2</td><td>Fake News, Social Bots, Deepfakes</td><td>RZG-Faktencheck, Deutsch-Medienvergleich, Deepfake-Analyse</td></tr><tr data-quarter="9Q3"><td>9. Klasse · Q3</td><td>Softwareentwicklung, Programmieren, Lernen mit KI</td><td>KI-Nutzung deklarieren, KI-Ergebnis prüfen, Testprotokoll</td></tr><tr data-quarter="9Q4"><td>9. Klasse · Q4</td><td>Datenspuren, Privatsphäre, Verschlüsselung, Medienprojekt</td><td>BO-Online-Reputation, ERG-Datenschutzfall, Projektpräsentation</td></tr></tbody></table>
 </section>
 <section id="praxis">
-<h2>4. Praxisbeispiele im Detail</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Karten zeigen Titel, MI-Anschluss und Lernprodukt. Links aus der Fächerübersicht springen direkt zum passenden Praxisbeispiel und markieren es kurz. Für Auftragsschritte, Quellen und vollständige Kompetenztexte zur Langversion wechseln.</p><p class="note long-only"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table class="long-only" id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
+<h2>4. Praxisbeispiele im Detail</h2><p class="note short-only"><strong>Kurzversion:</strong> Dieser Abschnitt wird ausgeblendet. Praxisbeispiele werden aus der schnellen Fächerübersicht direkt in der Langversion geöffnet.</p><p class="note long-only"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table class="long-only" id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
 <div class="filters">
 <input id="search" placeholder="Suche: Thema, Kompetenz, Produkt" type="search"/>
 <select id="miFilter"><option value="">Alle Kompetenzen</option><option>MI.1.1</option><option>MI.1.2</option><option>MI.1.3</option><option>MI.1.4</option><option>MI.2.1</option><option>MI.2.2</option><option>MI.2.3</option></select>
@@ -1275,6 +1277,10 @@ body.short-view .revealed-by-link{
     if(!id) return false;
     const target = document.getElementById(id);
     if(!target) return false;
+    const targetDetailsProbe = target.tagName === 'DETAILS' ? target : target.closest('details');
+    if(document.body.classList.contains('short-view') && targetDetailsProbe && targetDetailsProbe.classList.contains('example')){
+      setViewMode('long');
+    }
     const isShort = document.body.classList.contains('short-view');
 
     if(target.classList.contains('hidden-by-filter')){
@@ -1328,7 +1334,7 @@ body.short-view .revealed-by-link{
       btn.setAttribute('aria-pressed', btn.dataset.viewMode === mode ? 'true' : 'false');
     });
     const status = document.getElementById('viewModeStatus');
-    if(status) status.textContent = isShort ? 'Kurzversion aktiv: Auswahl, Quartale, Lernprodukte.' : 'Langversion aktiv: Details, Herleitung, Fachlehrmittel und Quellen.';
+    if(status) status.textContent = isShort ? 'Kurzversion aktiv: Auswahl über Fächerliste; Details öffnen in der Langversion.' : 'Langversion aktiv: Details, Herleitung, Fachlehrmittel und Quellen.';
     if(isShort){
       document.querySelectorAll('details.example').forEach(d => d.open = false);
       document.querySelectorAll('.fachmittel-block').forEach(d => d.open = false);
