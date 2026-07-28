@@ -1297,9 +1297,9 @@ body.short-view table{min-width:620px}
   document.querySelectorAll('[data-view-mode]').forEach(btn => {
     btn.addEventListener('click', () => setViewMode(btn.dataset.viewMode));
   });
-  let savedViewMode = 'long';
-  try{ savedViewMode = localStorage.getItem('miPraxisleitfadenAnsicht') || 'long'; }catch(err){}
-  setViewMode(savedViewMode === 'short' ? 'short' : 'long');
+  let savedViewMode = 'short';
+  try{ savedViewMode = localStorage.getItem('miPraxisleitfadenAnsicht') || 'short'; }catch(err){}
+  setViewMode(savedViewMode === 'long' ? 'long' : 'short');
 
   filterContent();
 </script>
