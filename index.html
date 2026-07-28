@@ -467,6 +467,21 @@ body.short-view .summary-line{display:none}
 body.short-view .example-title{font-size:18px}
 body.short-view table{min-width:620px}
 @media print{.view-toggle,.view-mode-status{display:none!important}body.short-view #sprachstarken,body.short-view #links{display:block!important}}
+body.short-view details.example.link-target-preview{
+  border-color:var(--accent-dark);
+  box-shadow:0 0 0 3px rgba(0,138,166,.16), var(--shadow);
+}
+body.short-view details.example.link-target-preview > summary{
+  background:var(--soft);
+}
+body.short-view details.example.link-target-preview .summary-line{
+  display:block;
+}
+body.short-view .revealed-by-link{
+  outline:3px solid rgba(0,138,166,.35);
+  outline-offset:3px;
+}
+
 
 </style>
 </head>
@@ -484,10 +499,10 @@ body.short-view table{min-width:620px}
 <h2>Ansicht</h2>
 <p class="small">Kurzversion für schnelle Auswahl, Langversion mit Herleitung und Quellen.</p>
 <div aria-label="Ansicht wählen" class="view-toggle" role="group">
-<button aria-pressed="false" data-view-mode="short" type="button">Kurz</button>
-<button aria-pressed="true" data-view-mode="long" type="button">Lang</button>
+<button aria-pressed="true" data-view-mode="short" type="button">Kurz</button>
+<button aria-pressed="false" data-view-mode="long" type="button">Lang</button>
 </div>
-<div class="view-mode-status" id="viewModeStatus">Langversion aktiv.</div>
+<div class="view-mode-status" id="viewModeStatus">Kurzversion aktiv.</div>
 </div>
 <div class="sidebar-block" id="fachauswahl">
 <h2>Fachfilter</h2><p class="small">Mehrfachauswahl möglich. Ohne Auswahl werden alle Beispiele angezeigt.</p>
@@ -668,7 +683,7 @@ body.short-view table{min-width:620px}
 <table id="learning-evidence-table"><thead><tr><th>Schuljahr / Quartal</th><th>MI-Bezug</th><th>geeigneter Fach-Lernnachweis</th></tr></thead><tbody><tr data-quarter="7Q1"><td>7. Klasse · Q1</td><td>digitale Grundlagen, Dateiablage, Teams/OneDrive, Online-Bewertungen</td><td>Dateiablage-Check, Teams-Abgabe, Quellenblatt oder digitaler Mini-Auftrag</td></tr><tr data-quarter="7Q2"><td>7. Klasse · Q2</td><td>Social Media, Kommunikation, persönliche Daten, Feed-Algorithmen</td><td>ERG-Regelkatalog, Deutsch-Stellungnahme, Klassenchat-Regeln</td></tr><tr data-quarter="7Q3"><td>7. Klasse · Q3</td><td>Informatiksysteme, Sensoren, KI-Grundlagen, Algorithmen und Programmieren</td><td>NT-Sensorenskizze, KI/Programm-Vergleich, Ablaufdiagramm, Fehlerprotokoll</td></tr><tr data-quarter="7Q4"><td>7. Klasse · Q4</td><td>Bildsprache, Werbung, Urheberrecht, Datenbanken</td><td>BG-Bildanalyse, Lizenznachweis, kleine Datentabelle</td></tr><tr data-quarter="8Q1"><td>8. Klasse · Q1</td><td>Transfer: Dateien, Recherche, Quellen, sichere Kommunikation</td><td>Recherche- und Quellencheck, digitale Abgabe, Kommunikationsregeln</td></tr><tr data-quarter="8Q2"><td>8. Klasse · Q2</td><td>Transfer: Medienproduktion, Bild, Audio, Präsentation, Urheberrecht</td><td>Medienprodukt mit Quellen-/Lizenznachweis, Präsentation</td></tr><tr data-quarter="8Q3"><td>8. Klasse · Q3</td><td>Transfer: Daten erfassen, Tabellen, Diagramme, Auswertung</td><td>Datendossier, Umfrageauswertung, Diagrammkommentar</td></tr><tr data-quarter="8Q4"><td>8. Klasse · Q4</td><td>Transfer: Algorithmen, Ablaufdiagramme, Automatisierung, Problemlösen</td><td>Ablaufdiagramm, Sortier-/Suchaufgabe, Programmier-Miniauftrag</td></tr><tr data-quarter="9Q1"><td>9. Klasse · Q1</td><td>Sortier- und Suchalgorithmen</td><td>Algorithmusvergleich, Ablaufdiagramm, Testaufgabe</td></tr><tr data-quarter="9Q2"><td>9. Klasse · Q2</td><td>Fake News, Social Bots, Deepfakes</td><td>RZG-Faktencheck, Deutsch-Medienvergleich, Deepfake-Analyse</td></tr><tr data-quarter="9Q3"><td>9. Klasse · Q3</td><td>Softwareentwicklung, Programmieren, Lernen mit KI</td><td>KI-Nutzung deklarieren, KI-Ergebnis prüfen, Testprotokoll</td></tr><tr data-quarter="9Q4"><td>9. Klasse · Q4</td><td>Datenspuren, Privatsphäre, Verschlüsselung, Medienprojekt</td><td>BO-Online-Reputation, ERG-Datenschutzfall, Projektpräsentation</td></tr></tbody></table>
 </section>
 <section id="praxis">
-<h2>4. Praxisbeispiele im Detail</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Karten zeigen Titel, MI-Anschluss und Lernprodukt. Für Auftragsschritte, Quellen und vollständige Kompetenztexte zur Langversion wechseln.</p><p class="note long-only"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table class="long-only" id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
+<h2>4. Praxisbeispiele im Detail</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Karten zeigen Titel, MI-Anschluss und Lernprodukt. Links aus der Fächerübersicht springen direkt zum passenden Praxisbeispiel und markieren es kurz. Für Auftragsschritte, Quellen und vollständige Kompetenztexte zur Langversion wechseln.</p><p class="note long-only"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table class="long-only" id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
 <div class="filters">
 <input id="search" placeholder="Suche: Thema, Kompetenz, Produkt" type="search"/>
 <select id="miFilter"><option value="">Alle Kompetenzen</option><option>MI.1.1</option><option>MI.1.2</option><option>MI.1.3</option><option>MI.1.4</option><option>MI.2.1</option><option>MI.2.2</option><option>MI.2.3</option></select>
@@ -1256,26 +1271,52 @@ body.short-view table{min-width:620px}
     link.insertAdjacentElement('afterend', btn);
   });
 
+  function revealInternalTarget(id, updateHash = true){
+    if(!id) return false;
+    const target = document.getElementById(id);
+    if(!target) return false;
+    const isShort = document.body.classList.contains('short-view');
+
+    if(target.classList.contains('hidden-by-filter')){
+      target.classList.remove('hidden-by-filter');
+      target.classList.add('revealed-by-link');
+      setTimeout(() => target.classList.remove('revealed-by-link'), 3000);
+    }
+
+    const targetDetails = target.tagName === 'DETAILS' ? target : target.closest('details');
+    if(targetDetails){
+      if(targetDetails.classList.contains('example')){
+        if(!isShort) targetDetails.open = true;
+        targetDetails.classList.add('link-target-preview');
+        setTimeout(() => targetDetails.classList.remove('link-target-preview'), 4500);
+      } else {
+        targetDetails.open = true;
+      }
+    }
+
+    const parentBlock = target.closest('.fachmittel-block');
+    if(parentBlock && parentBlock.tagName === 'DETAILS') parentBlock.open = true;
+    if(parentBlock && parentBlock.classList.contains('hidden-by-filter')){
+      parentBlock.classList.remove('hidden-by-filter');
+      parentBlock.classList.add('revealed-by-link');
+      setTimeout(() => parentBlock.classList.remove('revealed-by-link'), 3000);
+    }
+
+    setTimeout(() => {
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      if(updateHash && history.pushState){
+        history.pushState(null, '', '#' + encodeURIComponent(id));
+      }
+    }, 40);
+    return true;
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', () => {
-      const id = decodeURIComponent(link.getAttribute('href').slice(1));
-      const target = document.getElementById(id);
-      if(!target) return;
-      if(target.tagName === 'DETAILS') target.open = true;
-      const closedParent = target.closest('details');
-      if(closedParent) closedParent.open = true;
-      if(target.classList.contains('hidden-by-filter')){
-        target.classList.remove('hidden-by-filter');
-        target.classList.add('revealed-by-link');
-        setTimeout(() => target.classList.remove('revealed-by-link'), 2500);
-      }
-      const parentBlock = target.closest('.fachmittel-block');
-      if(parentBlock && parentBlock.tagName === 'DETAILS') parentBlock.open = true;
-      if(parentBlock && parentBlock.classList.contains('hidden-by-filter')){
-        parentBlock.classList.remove('hidden-by-filter');
-        parentBlock.classList.add('revealed-by-link');
-        setTimeout(() => parentBlock.classList.remove('revealed-by-link'), 2500);
-      }
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      if(!href || href === '#') return;
+      const id = decodeURIComponent(href.slice(1));
+      if(revealInternalTarget(id, true)) event.preventDefault();
     });
   });
 
@@ -1302,6 +1343,12 @@ body.short-view table{min-width:620px}
   setViewMode(savedViewMode === 'long' ? 'long' : 'short');
 
   filterContent();
+  if(window.location.hash){
+    setTimeout(() => revealInternalTarget(decodeURIComponent(window.location.hash.slice(1)), false), 120);
+  }
+  window.addEventListener('hashchange', () => {
+    if(window.location.hash) revealInternalTarget(decodeURIComponent(window.location.hash.slice(1)), false);
+  });
 </script>
 </body>
 </html>
