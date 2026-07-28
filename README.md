@@ -35,3 +35,7 @@ Für GitHub Pages die Datei `index.html` im Root des Repositorys ersetzen und co
 ## Quellenhinweis
 
 Der Leitfaden basiert auf dem Aargauer Lehrplan Volksschule, Modul Medien und Informatik, den Jahresplanungen Connected 3 und Connected 4, der angepassten Jahresplanung Medien und Informatik 7. und 9. Klasse sowie verlinkten Unterrichtsmaterialien.
+
+## Kurz-/Langansicht
+
+Die Website enthält einen Umschalter zwischen Kurzversion und Langversion. Die Kurzversion zeigt die schnelle Auswahl nach Fach, Quartal und Lernprodukt. Die Langversion zeigt zusätzlich Herleitung, Fachlehrmittelanschlüsse, Kompetenzdetails und Linkverzeichnis.

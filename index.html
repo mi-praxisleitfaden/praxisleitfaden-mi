@@ -430,6 +430,44 @@ details.example[open] > summary:before{content:"Details ausblenden"}
   details.example > summary:before{display:none}
   .detail-body{display:block}
 }
+
+/* Umschaltbare Lang-/Kurzansicht */
+.view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.view-toggle button{border:1px solid var(--line-strong);background:#fff;color:var(--accent-dark);font-weight:900;border-radius:999px;padding:8px 10px;cursor:pointer}
+.view-toggle button[aria-pressed="true"]{background:var(--accent-dark);color:#fff;border-color:var(--accent-dark)}
+.view-mode-status{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.35}
+.short-only{display:none!important}
+body.short-view .long-only{display:none!important}
+body.short-view .short-only{display:block!important}
+body.short-view #sprachstarken,
+body.short-view #links,
+body.short-view #kategorie-summary,
+body.short-view #praxis > .note.long-only,
+body.short-view .legend.long-only,
+body.short-view nav.toc a[href="#sprachstarken"],
+body.short-view nav.toc a[href="#links"]{display:none!important}
+body.short-view details.example .detail-body{display:none!important}
+body.short-view details.example > summary:before{display:none!important}
+body.short-view details.example > summary{cursor:default}
+body.short-view #subject-overview-table th:nth-child(6),
+body.short-view #subject-overview-table td:nth-child(6),
+body.short-view #subject-overview-table th:nth-child(7),
+body.short-view #subject-overview-table td:nth-child(7),
+body.short-view #subject-overview-table th:nth-child(8),
+body.short-view #subject-overview-table td:nth-child(8){display:none}
+body.short-view #schularena-quick-table th:nth-child(5),
+body.short-view #schularena-quick-table td:nth-child(5),
+body.short-view #schularena-quick-table th:nth-child(6),
+body.short-view #schularena-quick-table td:nth-child(6){display:none}
+body.short-view .lehrmittel-quick-block{display:none!important}
+body.short-view .filters select{display:none}
+body.short-view .filters input{min-width:100%;width:100%}
+body.short-view .example{margin:10px 0}
+body.short-view .summary-line{display:none}
+body.short-view .example-title{font-size:18px}
+body.short-view table{min-width:620px}
+@media print{.view-toggle,.view-mode-status{display:none!important}body.short-view #sprachstarken,body.short-view #links{display:block!important}}
+
 </style>
 </head>
 <body>
@@ -442,6 +480,15 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </header>
 <main>
 <nav class="toc"><div class="toc-title">Praxisleitfaden MI</div>
+<div class="sidebar-block" id="ansichtsauswahl">
+<h2>Ansicht</h2>
+<p class="small">Kurzversion für schnelle Auswahl, Langversion mit Herleitung und Quellen.</p>
+<div aria-label="Ansicht wählen" class="view-toggle" role="group">
+<button aria-pressed="false" data-view-mode="short" type="button">Kurz</button>
+<button aria-pressed="true" data-view-mode="long" type="button">Lang</button>
+</div>
+<div class="view-mode-status" id="viewModeStatus">Langversion aktiv.</div>
+</div>
 <div class="sidebar-block" id="fachauswahl">
 <h2>Fachfilter</h2><p class="small">Mehrfachauswahl möglich. Ohne Auswahl werden alle Beispiele angezeigt.</p>
 <div aria-label="Fachauswahl" class="subject-grid">
@@ -487,12 +534,13 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </div></nav>
 <section id="einsatz">
 <h2>1. Einsatz des Leitfadens</h2>
+<div class="note short-only"><strong>Kurzversion:</strong> Fach und Quartal links wählen, passendes Praxisbeispiel öffnen und Lernprodukt übernehmen. Die Langversion zeigt zusätzlich Herleitung, Fachlehrmittelanschlüsse, Kompetenztexte und vollständiges Linkverzeichnis.</div>
 <p>Der Leitfaden unterstützt Lehrpersonen aller Fachbereiche dabei, Medien- und Informatikkompetenzen sowie fächerübergreifende Anwendungskompetenzen im bestehenden Fachunterricht gezielt aufzubauen, anzuwenden und zu festigen. Ausgangspunkt bleibt immer der Fachinhalt. Die Kompetenz wird nicht als Zusatzthema behandelt, sondern an einem passenden fachlichen Auftrag sichtbar gemacht.</p>
-<div class="note"><strong>Leselogik:</strong> Zuerst links in der Navigation ein oder mehrere Fächer und bei Bedarf ein MI-Quartal wählen. Danach zeigt die schnelle Fächerübersicht nur passende Einstiege. Im Detailteil sind die dazugehörigen Praxisbeispiele einklappbar: sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, Zeitbedarf, vollständiger Kompetenzbezug und Quellen erscheinen nach dem Öffnen.</div>
-<div class="note"><strong>Arbeitsprinzip:</strong> Fachinhalt → MI-Kompetenz → konkreter Auftrag → sichtbarer Nachweis. Eine Kompetenz gilt nur dann als gestärkt, wenn sie im Auftrag bewusst angeleitet und im Lernprodukt erkennbar wird.</div><div class="competency-types"><div class="competency-type"><h3>MI.1 Medien</h3><p>Mediennutzung, Medienwirkung, Medienkritik, Produktion, Veröffentlichung, Kommunikation und Kooperation.</p></div><div class="competency-type"><h3>MI.2 Informatik</h3><p>Datenstrukturen, Algorithmen, Informatiksysteme, sichere Datenverarbeitung, Speicherorte und Verschlüsselung.</p></div><div class="competency-type"><h3>Anwendungskompetenzen</h3><p>Fächerübergreifende Nutzung digitaler Werkzeuge: schreiben, überarbeiten, präsentieren, recherchieren, Quellen nutzen, Tabellenkalkulation, Dateiablage und Zusammenarbeit.</p></div></div><div class="note"><strong>Transferprinzip:</strong> Die Quartalsangaben zeigen den passenden MI-Anschluss: Aufbau im Fach, Festigung nach Connected 3 oder 4, oder schulweite Basis. Damit wird sichtbar, wann ein Fachauftrag eine im MI-Unterricht behandelte Kompetenz gezielt aufnimmt.</div>
-<div class="note" id="mi-jahresplanung-neu"><strong>Neue MI-Jahresplanung:</strong> Der Leitfaden zeigt den Transfer wieder in Quartalen. Die genauen Wochen aus der angepassten MI-Jahresplanung stehen nur als Zusatzhinweise in den Karten. In der 7. Klasse liegen die Schwerpunkte bei W1-7 digitale Grundlagen, W8-16 Social Media, W17-20 Informatiksysteme/KI, W21-28 Algorithmen/Programmieren und W30-40 Bildsprache, Rechte und Daten. In der 9. Klasse folgen W1-7 Sortier- und Suchalgorithmen, W8-16 Fake News/Deepfakes, W17-20 Softwareentwicklung, W21-28 Programmieren/Lernen mit KI und W30-40 Datenspuren, Datenschutz, Verschlüsselung und Medienprojekt. Die 8. Klasse ist in vier Transferquartale gegliedert und bleibt Fachunterricht ohne eigenes Connected-Lehrmittel.</div><div class="note"><strong>Zeitangaben:</strong> Der Leitfaden unterscheidet zwischen <em>Quelle nennt</em>, <em>geschätzt</em> und <em>offen</em>. Geschätzte Werte sind Planungshilfen für 45-Minuten-Lektionen und keine gesicherten Angaben der verlinkten Materialien.</div>
-<div class="note"><strong>Quellen und Entwicklung:</strong> Die Grundlagen und der KI-Hinweis sind in Abschnitt 6 ausgewiesen.</div><div class="note"><strong>Quellenlinks in Teams:</strong> Wird der Leitfaden als Teams-Registerkarte angezeigt, können externe Quellenlinks durch Teams blockiert werden. Quellen per Rechtsklick im Browser öffnen oder den Button <strong>Link kopieren</strong> nutzen. Idealer Einsatz: Datei in SharePoint/OneDrive ablegen und über <strong>Im Browser öffnen</strong> verwenden, nicht als Website-Tab.</div>
-<table>
+<div class="note long-only"><strong>Leselogik:</strong> Zuerst links in der Navigation ein oder mehrere Fächer und bei Bedarf ein MI-Quartal wählen. Danach zeigt die schnelle Fächerübersicht nur passende Einstiege. Im Detailteil sind die dazugehörigen Praxisbeispiele einklappbar: sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, Zeitbedarf, vollständiger Kompetenzbezug und Quellen erscheinen nach dem Öffnen.</div>
+<div class="note"><strong>Arbeitsprinzip:</strong> Fachinhalt → MI-Kompetenz → konkreter Auftrag → sichtbarer Nachweis. Eine Kompetenz gilt nur dann als gestärkt, wenn sie im Auftrag bewusst angeleitet und im Lernprodukt erkennbar wird.</div><div class="competency-types"><div class="competency-type"><h3>MI.1 Medien</h3><p>Mediennutzung, Medienwirkung, Medienkritik, Produktion, Veröffentlichung, Kommunikation und Kooperation.</p></div><div class="competency-type"><h3>MI.2 Informatik</h3><p>Datenstrukturen, Algorithmen, Informatiksysteme, sichere Datenverarbeitung, Speicherorte und Verschlüsselung.</p></div><div class="competency-type"><h3>Anwendungskompetenzen</h3><p>Fächerübergreifende Nutzung digitaler Werkzeuge: schreiben, überarbeiten, präsentieren, recherchieren, Quellen nutzen, Tabellenkalkulation, Dateiablage und Zusammenarbeit.</p></div></div><div class="note long-only"><strong>Transferprinzip:</strong> Die Quartalsangaben zeigen den passenden MI-Anschluss: Aufbau im Fach, Festigung nach Connected 3 oder 4, oder schulweite Basis. Damit wird sichtbar, wann ein Fachauftrag eine im MI-Unterricht behandelte Kompetenz gezielt aufnimmt.</div>
+<div class="note long-only" id="mi-jahresplanung-neu"><strong>Neue MI-Jahresplanung:</strong> Der Leitfaden zeigt den Transfer wieder in Quartalen. Die genauen Wochen aus der angepassten MI-Jahresplanung stehen nur als Zusatzhinweise in den Karten. In der 7. Klasse liegen die Schwerpunkte bei W1-7 digitale Grundlagen, W8-16 Social Media, W17-20 Informatiksysteme/KI, W21-28 Algorithmen/Programmieren und W30-40 Bildsprache, Rechte und Daten. In der 9. Klasse folgen W1-7 Sortier- und Suchalgorithmen, W8-16 Fake News/Deepfakes, W17-20 Softwareentwicklung, W21-28 Programmieren/Lernen mit KI und W30-40 Datenspuren, Datenschutz, Verschlüsselung und Medienprojekt. Die 8. Klasse ist in vier Transferquartale gegliedert und bleibt Fachunterricht ohne eigenes Connected-Lehrmittel.</div><div class="note long-only"><strong>Zeitangaben:</strong> Der Leitfaden unterscheidet zwischen <em>Quelle nennt</em>, <em>geschätzt</em> und <em>offen</em>. Geschätzte Werte sind Planungshilfen für 45-Minuten-Lektionen und keine gesicherten Angaben der verlinkten Materialien.</div>
+<div class="note long-only"><strong>Quellen und Entwicklung:</strong> Die Grundlagen und der KI-Hinweis sind in Abschnitt 6 ausgewiesen.</div><div class="note long-only"><strong>Quellenlinks in Teams:</strong> Wird der Leitfaden als Teams-Registerkarte angezeigt, können externe Quellenlinks durch Teams blockiert werden. Quellen per Rechtsklick im Browser öffnen oder den Button <strong>Link kopieren</strong> nutzen. Idealer Einsatz: Datei in SharePoint/OneDrive ablegen und über <strong>Im Browser öffnen</strong> verwenden, nicht als Website-Tab.</div>
+<table class="long-only">
 <thead>
 <tr><th>Umfang</th><th>Geeignete Form</th><th>Sichtbarer Nachweis</th></tr>
 </thead>
@@ -504,8 +552,8 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </table>
 <div class="note"><strong>Schulweite Basiskompetenzen und Anwendungskompetenzen:</strong> Dateiablage, Dateinamen, Teilen von Dokumenten, Textüberarbeitung, Präsentieren, Tabellenkalkulation, Recherche sowie Quellen- und Lizenznachweise betreffen alle Fächer. Diese Punkte werden in der Fächerübersicht als „alle Fächer“ oder in den einzelnen Fachbeispielen ausgewiesen und sollen nicht als Zusatzprojekt, sondern als gemeinsamer Mindeststandard genutzt werden.</div>
 </section>
-<section id="faecher"><h2>2. Schnelle Fächerübersicht als Auswahlhilfe</h2>
-<p>Diese Übersicht zeigt pro Fach ausgewählte Einstiege. Zuerst stehen konkrete Praxisbeispiele, danach passende Anschlüsse aus den Fachlehrmitteln und unterrichtsfertige Zusatzmaterialien. So sieht eine Lehrperson zuerst, welches Lehrmittelkapitel ohnehin im Fachunterricht vorkommt, welche Anwendungskompetenz darin steckt und welches Praxisbeispiel daran anschliessen kann. Die Spalten MI-Anschluss und Funktion machen sichtbar, wann ein Beispiel als Aufbau im Fach, als Festigung nach Connected 3 oder 4 oder als schulweite Basis sinnvoll ist.</p>
+<section id="faecher"><h2>2. Schnelle Fächerübersicht als Auswahlhilfe</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Tabelle zeigt nur Fach, Priorität, Praxisbeispiel, MI-Anschluss, Funktion und Lernprodukt. Zeitbedarf und Kompetenzdetails bleiben in der Langversion.</p>
+<p class="long-only">Diese Übersicht zeigt pro Fach ausgewählte Einstiege. Zuerst stehen konkrete Praxisbeispiele, danach passende Anschlüsse aus den Fachlehrmitteln und unterrichtsfertige Zusatzmaterialien. So sieht eine Lehrperson zuerst, welches Lehrmittelkapitel ohnehin im Fachunterricht vorkommt, welche Anwendungskompetenz darin steckt und welches Praxisbeispiel daran anschliessen kann. Die Spalten MI-Anschluss und Funktion machen sichtbar, wann ein Beispiel als Aufbau im Fach, als Festigung nach Connected 3 oder 4 oder als schulweite Basis sinnvoll ist.</p>
 <h3>2.1 Auswahl nach Fach und Praxisbeispiel</h3>
 <table id="subject-overview-table">
 <thead><tr><th>Fach</th><th>Priorität</th><th>Empfohlenes Praxisbeispiel</th><th>MI-Anschluss</th><th>Funktion</th><th>Zeitbedarf</th><th>Sicherheit</th><th>Kompetenzfokus</th><th>Lernprodukt</th></tr></thead>
@@ -543,9 +591,9 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 <tr data-quarter="8Q2 9Q4"><td>Musik</td><td><span class="tag vertiefung">Vertiefung</span></td><td><a href="#beispiel-podcast-audiobeitrag">Podcast oder Audiobeitrag</a></td><td>8. Klasse · Transfer in Deutsch/Musik/Fremdsprachen;  9 W38-40 Medienprojekt</td><td><span class="timing-badge transfer">Festigung nach MI</span></td><td>3 bis 5 Lektionen</td><td>geschätzt</td><td>MI.1.3 f/g</td><td>Podcast oder Jingle</td></tr>
 </tbody>
 </table>
-<h3>2.2 Anschluss an Fachlehrmittel</h3>
-<p>Diese Kurzübersicht verbindet laufende Kapitel aus Fachlehrmitteln mit passenden Anwendungskompetenzen und Praxisbeispielen. Die Fachblöcke sind eingeklappt, damit die Auswahlhilfe übersichtlich bleibt. Bei gesetztem Fachfilter wird der passende Fachlehrmittelblock automatisch geöffnet. Die ausführliche Herleitung steht in Abschnitt 5.</p>
-<details class="fachmittel-block quick-fachmittel" data-fach="Deutsch" id="quick-fachmittel-deutsch"><summary>Deutsch · Die Sprachstarken 7–9</summary>
+<h3 class="lehrmittel-quick-block">2.2 Anschluss an Fachlehrmittel</h3>
+<p class="lehrmittel-quick-block">Diese Kurzübersicht verbindet laufende Kapitel aus Fachlehrmitteln mit passenden Anwendungskompetenzen und Praxisbeispielen. Die Fachblöcke sind eingeklappt, damit die Auswahlhilfe übersichtlich bleibt. Bei gesetztem Fachfilter wird der passende Fachlehrmittelblock automatisch geöffnet. Die ausführliche Herleitung steht in Abschnitt 5.</p>
+<details class="quick-fachmittel fachmittel-block lehrmittel-quick-block" data-fach="Deutsch" id="quick-fachmittel-deutsch"><summary>Deutsch · Die Sprachstarken 7–9</summary>
 <table class="lehrmittel-quick-table">
 <thead><tr><th>Fach</th><th>Schuljahr</th><th>Lehrmittelkapitel</th><th>Anwendungskompetenz</th><th>passendes Praxisbeispiel</th><th>Details</th></tr></thead>
 <tbody>
@@ -555,7 +603,7 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </tbody>
 </table>
 </details>
-<details class="fachmittel-block quick-fachmittel" data-fach="Mathematik" id="quick-fachmittel-mathematik"><summary>Mathematik · Mathematik 1–3</summary>
+<details class="quick-fachmittel fachmittel-block lehrmittel-quick-block" data-fach="Mathematik" id="quick-fachmittel-mathematik"><summary>Mathematik · Mathematik 1–3</summary>
 <table class="lehrmittel-quick-table">
 <thead><tr><th>Fach</th><th>Schuljahr</th><th>Lehrmittelkapitel</th><th>Anwendungskompetenz</th><th>passendes Praxisbeispiel</th><th>Details</th></tr></thead>
 <tbody>
@@ -565,7 +613,7 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </tbody>
 </table>
 </details>
-<details class="fachmittel-block quick-fachmittel" data-fach="NT" id="quick-fachmittel-nt"><summary>NT · Prisma 1–3</summary>
+<details class="quick-fachmittel fachmittel-block lehrmittel-quick-block" data-fach="NT" id="quick-fachmittel-nt"><summary>NT · Prisma 1–3</summary>
 <table class="lehrmittel-quick-table">
 <thead><tr><th>Fach</th><th>Schuljahr</th><th>Lehrmittelkapitel</th><th>Anwendungskompetenz</th><th>passendes Praxisbeispiel</th><th>Details</th></tr></thead>
 <tbody>
@@ -575,7 +623,7 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </tbody>
 </table>
 </details>
-<details class="fachmittel-block quick-fachmittel" data-fach="RZG" id="quick-fachmittel-rzg"><summary>RZG · Durchblick 1/2</summary>
+<details class="quick-fachmittel fachmittel-block lehrmittel-quick-block" data-fach="RZG" id="quick-fachmittel-rzg"><summary>RZG · Durchblick 1/2</summary>
 <table class="lehrmittel-quick-table">
 <thead><tr><th>Fach</th><th>Schuljahr</th><th>Lehrmittelkapitel</th><th>Anwendungskompetenz</th><th>passendes Praxisbeispiel</th><th>Details</th></tr></thead>
 <tbody>
@@ -585,7 +633,7 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </tbody>
 </table>
 </details>
-<details class="fachmittel-block quick-fachmittel" data-fach="Fremdsprachen" id="quick-fachmittel-fremdsprachen"><summary>Fremdsprachen · dis donc! 7–9</summary>
+<details class="quick-fachmittel fachmittel-block lehrmittel-quick-block" data-fach="Fremdsprachen" id="quick-fachmittel-fremdsprachen"><summary>Fremdsprachen · dis donc! 7–9</summary>
 <table class="lehrmittel-quick-table">
 <thead><tr><th>Fach</th><th>Schuljahr</th><th>Lehrmittelkapitel</th><th>Anwendungskompetenz</th><th>passendes Praxisbeispiel</th><th>Details</th></tr></thead>
 <tbody>
@@ -620,11 +668,11 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 <table id="learning-evidence-table"><thead><tr><th>Schuljahr / Quartal</th><th>MI-Bezug</th><th>geeigneter Fach-Lernnachweis</th></tr></thead><tbody><tr data-quarter="7Q1"><td>7. Klasse · Q1</td><td>digitale Grundlagen, Dateiablage, Teams/OneDrive, Online-Bewertungen</td><td>Dateiablage-Check, Teams-Abgabe, Quellenblatt oder digitaler Mini-Auftrag</td></tr><tr data-quarter="7Q2"><td>7. Klasse · Q2</td><td>Social Media, Kommunikation, persönliche Daten, Feed-Algorithmen</td><td>ERG-Regelkatalog, Deutsch-Stellungnahme, Klassenchat-Regeln</td></tr><tr data-quarter="7Q3"><td>7. Klasse · Q3</td><td>Informatiksysteme, Sensoren, KI-Grundlagen, Algorithmen und Programmieren</td><td>NT-Sensorenskizze, KI/Programm-Vergleich, Ablaufdiagramm, Fehlerprotokoll</td></tr><tr data-quarter="7Q4"><td>7. Klasse · Q4</td><td>Bildsprache, Werbung, Urheberrecht, Datenbanken</td><td>BG-Bildanalyse, Lizenznachweis, kleine Datentabelle</td></tr><tr data-quarter="8Q1"><td>8. Klasse · Q1</td><td>Transfer: Dateien, Recherche, Quellen, sichere Kommunikation</td><td>Recherche- und Quellencheck, digitale Abgabe, Kommunikationsregeln</td></tr><tr data-quarter="8Q2"><td>8. Klasse · Q2</td><td>Transfer: Medienproduktion, Bild, Audio, Präsentation, Urheberrecht</td><td>Medienprodukt mit Quellen-/Lizenznachweis, Präsentation</td></tr><tr data-quarter="8Q3"><td>8. Klasse · Q3</td><td>Transfer: Daten erfassen, Tabellen, Diagramme, Auswertung</td><td>Datendossier, Umfrageauswertung, Diagrammkommentar</td></tr><tr data-quarter="8Q4"><td>8. Klasse · Q4</td><td>Transfer: Algorithmen, Ablaufdiagramme, Automatisierung, Problemlösen</td><td>Ablaufdiagramm, Sortier-/Suchaufgabe, Programmier-Miniauftrag</td></tr><tr data-quarter="9Q1"><td>9. Klasse · Q1</td><td>Sortier- und Suchalgorithmen</td><td>Algorithmusvergleich, Ablaufdiagramm, Testaufgabe</td></tr><tr data-quarter="9Q2"><td>9. Klasse · Q2</td><td>Fake News, Social Bots, Deepfakes</td><td>RZG-Faktencheck, Deutsch-Medienvergleich, Deepfake-Analyse</td></tr><tr data-quarter="9Q3"><td>9. Klasse · Q3</td><td>Softwareentwicklung, Programmieren, Lernen mit KI</td><td>KI-Nutzung deklarieren, KI-Ergebnis prüfen, Testprotokoll</td></tr><tr data-quarter="9Q4"><td>9. Klasse · Q4</td><td>Datenspuren, Privatsphäre, Verschlüsselung, Medienprojekt</td><td>BO-Online-Reputation, ERG-Datenschutzfall, Projektpräsentation</td></tr></tbody></table>
 </section>
 <section id="praxis">
-<h2>4. Praxisbeispiele im Detail</h2><p class="note"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
+<h2>4. Praxisbeispiele im Detail</h2><p class="note short-only"><strong>Kurzversion:</strong> Die Karten zeigen Titel, MI-Anschluss und Lernprodukt. Für Auftragsschritte, Quellen und vollständige Kompetenztexte zur Langversion wechseln.</p><p class="note long-only"><strong>Hinweis:</strong> Die Beispiele sind als Detailkarten einklappbar. Die Auswahl erfolgt über die Fächerübersicht oder über die Filter links. Sichtbar bleiben Titel, MI-Anschluss, Kompetenzkurzform und Lernprodukt; Auftrag, vollständiger Kompetenzbezug, Zeitbedarf und Quellen erscheinen nach dem Öffnen.</p><table class="long-only" id="kategorie-summary"><thead><tr><th>Kategorie</th><th>Kennzeichnung</th><th>Nutzen für Fachlehrpersonen</th></tr></thead><tbody><tr><td>fertige Planung</td><td>blau</td><td>direkt als Unterrichtseinheit oder Sequenz einsetzbar</td></tr><tr><td>Arbeitsblatt/Material</td><td>gelb</td><td>Material, Arbeitsblatt, Dossier oder Modul, das in einen Fachauftrag eingebettet wird</td></tr><tr><td>Projektidee</td><td>violett</td><td>grösseres Vorhaben mit Anpassung an Fach, Zeitgefäss und Klasse</td></tr></tbody></table>
 <div class="filters">
 <input id="search" placeholder="Suche: Thema, Kompetenz, Produkt" type="search"/>
 <select id="miFilter"><option value="">Alle Kompetenzen</option><option>MI.1.1</option><option>MI.1.2</option><option>MI.1.3</option><option>MI.1.4</option><option>MI.2.1</option><option>MI.2.2</option><option>MI.2.3</option></select>
-<select id="categoryFilter"><option value="">Alle Kategorien</option><option value="fertige Planung">fertige Planung</option><option value="Arbeitsblatt/Material">Arbeitsblatt/Material</option><option value="Projektidee">Projektidee</option></select></div><div class="legend"><span class="cat cat-planung">fertige Planung: direkt nutzbare Unterrichtseinheit</span><span class="cat cat-material">Arbeitsblatt/Material: einzelne Materialien, Dossiers oder Aufgaben</span><span class="cat cat-projekt">Projektidee: grössere Sequenz mit Anpassungsbedarf</span></div>
+<select id="categoryFilter"><option value="">Alle Kategorien</option><option value="fertige Planung">fertige Planung</option><option value="Arbeitsblatt/Material">Arbeitsblatt/Material</option><option value="Projektidee">Projektidee</option></select></div><div class="legend long-only"><span class="cat cat-planung">fertige Planung: direkt nutzbare Unterrichtseinheit</span><span class="cat cat-material">Arbeitsblatt/Material: einzelne Materialien, Dossiers oder Aufgaben</span><span class="cat cat-projekt">Projektidee: grössere Sequenz mit Anpassungsbedarf</span></div>
 <details class="example" data-fach="alle Fächer BO" data-kategorie="fertige Planung" data-mi="MI.1.4 MI.2.1 MI.2.3" data-quarter="7Q1 8Q1" id="beispiel-daten-speichern-teilen-wiederfinden"><summary><span class="example-title">Daten speichern, teilen und wiederfinden</span><span class="summary-meta">MI-Anschluss: 7 Q1 (W1-7)</span><span class="summary-line">Kompetenz: MI.2.1 h, MI.2.1 k, MI.2.3 j. Erweiterung: MI.1.4 b.</span><span class="summary-product">Lernprodukt: strukturierter Projektordner mit Dateinamen, Version und kurzer Backup-Erklärung.</span></summary><div class="detail-body">
 <p class="category-line"><span class="cat cat-planung">Kategorie: fertige Planung</span></p><p class="timing-detail"><span class="timing-badge basis">Schulweite Basis</span><strong>MI-Anschluss:</strong> 7 Q1 (W1-7); danach schulweiter Standard und 8. Klasse · Transferjahr. <strong>Funktion:</strong> Jederzeit als gemeinsamer Mindeststandard einsetzbar.</p><p class="time-detail"><strong>Zeitbedarf:</strong> Quelle nennt für die ganze Einheit mehr als 5 Lektionen; reduzierter Einsatz im Fachunterricht: 1 bis 2 Lektionen, geschätzt. <strong>Sicherheit:</strong> Quelle und Schätzung. <strong>Begründung:</strong> Die vollständige Einheit ist mehrteilig. Für Fachunterricht werden nur Dateibenennung, Ablage, Teilen und Speicherorte genutzt.</p>
 <p class="source-row"><strong>Fächer:</strong> alle Fächer, BO, Deutsch. <strong>Quelle:</strong> <a class="external-source" data-url="https://www.zebis.ch/unterrichtsmaterial/wie-speichere-und-teile-ich-meine-daten" href="https://www.zebis.ch/unterrichtsmaterial/wie-speichere-und-teile-ich-meine-daten" rel="noopener noreferrer" target="_blank" title="Quelle öffnen: https://www.zebis.ch/unterrichtsmaterial/wie-speichere-und-teile-ich-meine-daten">zebis: Wie speichere und teile ich meine Daten?</a></p>
@@ -923,9 +971,9 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 </details>
 </section>
 <section id="quellen">
-<h2>6. Quellen und Entwicklung</h2>
-<div class="note"><strong>Grundlagen:</strong> Der Praxisleitfaden wurde aus dem Aargauer Lehrplan Volksschule, Modul Medien und Informatik, den vorhandenen Jahresplanungen zu Connected 3 und Connected 4 sowie den im Linkverzeichnis aufgeführten Unterrichtsmaterialien und Praxisbeispielen entwickelt.</div>
-<div class="sourcebox">
+<h2>6. Quellen und Entwicklung</h2><p class="note short-only">Kurzversion: Grundlage sind der Aargauer Lehrplan, die Connected-Jahresplanungen, die angepasste MI-Jahresplanung und die verlinkten Unterrichtsmaterialien. Die fachliche Prüfung bleibt Aufgabe der Schule/Fachschaft.</p>
+<div class="note long-only"><strong>Grundlagen:</strong> Der Praxisleitfaden wurde aus dem Aargauer Lehrplan Volksschule, Modul Medien und Informatik, den vorhandenen Jahresplanungen zu Connected 3 und Connected 4 sowie den im Linkverzeichnis aufgeführten Unterrichtsmaterialien und Praxisbeispielen entwickelt.</div>
+<div class="long-only sourcebox">
 <h3>Verwendete Hauptquellen</h3>
 <ul>
 <li>Aargauer Lehrplan Volksschule, Modul Medien und Informatik, Kompetenzaufbau MI.1 Medien und MI.2 Informatik.</li><li>Aargauer Lehrplan Volksschule, Gesamtausgabe: fächerübergreifende Anwendungskompetenzen in den Fachbereichslehrplänen, unter anderem Tastaturschreiben, Textüberarbeitung, Präsentieren, Recherche, Quellenarbeit, Tabellenkalkulation und digitale Zusammenarbeit.</li>
@@ -939,12 +987,12 @@ details.example[open] > summary:before{content:"Details ausblenden"}
 <li>Unterrichtsmaterialien und Planungshilfen aus PH Luzern, mia4u, zebis, SRF school, IQES CheckNews, PHZH, Jugend und Medien, saferinternet.at, PHBern, code4school, CS Unplugged, iLearnIT, Internet-ABC, umat.schularena.ch und weiteren im Linkverzeichnis aufgeführten Quellen.</li>
 </ul>
 </div>
-<div class="sourcebox">
+<div class="long-only sourcebox">
 <h3>KI-Hinweis</h3>
 <p>Dieser Praxisleitfaden wurde mit Unterstützung von KI entwickelt, strukturiert und redaktionell überarbeitet. Die Auswahl der Beispiele, die Kompetenzzuordnung, die Zeitangaben und die Formulierungen wurden im Arbeitsprozess mehrfach kritisch geprüft und angepasst.</p>
 <p>Die KI-Unterstützung ersetzt keine fachliche Prüfung durch Schule, Fachschaft oder Lehrperson. Vor dem verbindlichen Einsatz müssen Links, lokale ICT-Werkzeuge, Datenschutzvorgaben, Niveauanpassungen und zeitliche Passung durch die verantwortlichen Personen geprüft werden.</p>
 </div>
-<div class="sourcebox">
+<div class="long-only sourcebox">
 <h3>Einordnung der Zeit- und Kompetenzangaben</h3>
 <p>Die Zeitangaben sind nur dann als Quellenangabe zu verstehen, wenn dies ausdrücklich ausgewiesen ist. Alle anderen Angaben sind didaktische Schätzungen für 45-Minuten-Lektionen. Die Kompetenzbezüge orientieren sich am Aargauer Modul Medien und Informatik sowie an den fächerübergreifenden Anwendungskompetenzen aus der Gesamtausgabe. Sie wurden so gesetzt, dass Kompetenz, Auftrag und sichtbarer Nachweis zusammenpassen.</p>
 </div>
@@ -1230,6 +1278,29 @@ details.example[open] > summary:before{content:"Details ausblenden"}
       }
     });
   });
+
+  function setViewMode(mode){
+    const isShort = mode === 'short';
+    document.body.classList.toggle('short-view', isShort);
+    document.body.classList.toggle('long-view', !isShort);
+    document.querySelectorAll('[data-view-mode]').forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.dataset.viewMode === mode ? 'true' : 'false');
+    });
+    const status = document.getElementById('viewModeStatus');
+    if(status) status.textContent = isShort ? 'Kurzversion aktiv: Auswahl, Quartale, Lernprodukte.' : 'Langversion aktiv: Details, Herleitung, Fachlehrmittel und Quellen.';
+    if(isShort){
+      document.querySelectorAll('details.example').forEach(d => d.open = false);
+      document.querySelectorAll('.fachmittel-block').forEach(d => d.open = false);
+    }
+    try{ localStorage.setItem('miPraxisleitfadenAnsicht', mode); }catch(err){}
+  }
+  document.querySelectorAll('[data-view-mode]').forEach(btn => {
+    btn.addEventListener('click', () => setViewMode(btn.dataset.viewMode));
+  });
+  let savedViewMode = 'long';
+  try{ savedViewMode = localStorage.getItem('miPraxisleitfadenAnsicht') || 'long'; }catch(err){}
+  setViewMode(savedViewMode === 'short' ? 'short' : 'long');
+
   filterContent();
 </script>
 </body>
