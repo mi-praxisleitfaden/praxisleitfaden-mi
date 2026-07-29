@@ -215,6 +215,8 @@
     .subject-filter-panel{border:2px solid #dbeafe;background:#f8fafc}
     .subject-filter-panel h2{margin-bottom:8px}
     .subject-filter-panel .filter-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+    .sidebar-search input{width:100%;border:1px solid var(--line-strong);border-radius:var(--radius);padding:10px 12px;background:#fff;font:inherit}
+    .search-help{font-size:.82rem;color:var(--muted);margin:.35rem 0 .65rem}
     .subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
     .subject-choice{display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:9px 10px;cursor:pointer;font-weight:700;color:#243042}
     .subject-choice:hover{background:var(--soft)}
@@ -505,6 +507,13 @@ body.short-view .revealed-by-link{
 <button aria-pressed="false" data-view-mode="long" type="button">Lang</button>
 </div>
 <div class="view-mode-status" id="viewModeStatus">Kurzversion aktiv.</div>
+</div>
+<div class="sidebar-block sidebar-search" id="stichwortsuche">
+<h2>Stichwortsuche</h2>
+<p class="small">Sucht in Fächerübersicht, Schularena-Materialien, Lernnachweisen, Fachlehrmitteln und Praxisbeispielen.</p>
+<input id="globalSearch" placeholder="z. B. Fake News, Quellen, KI, Diagramm" type="search"/>
+<p class="search-help">Mit Fach- und Quartalsfilter kombinierbar.</p>
+<button class="btn" id="clearSearch" type="button">Suche löschen</button>
 </div>
 <div class="sidebar-block" id="fachauswahl">
 <h2>Fachfilter</h2><p class="small">Mehrfachauswahl möglich. Ohne Auswahl werden alle Beispiele angezeigt.</p>
@@ -1087,6 +1096,8 @@ body.short-view .revealed-by-link{
 </main>
 <script>
   const search = document.getElementById('search');
+  const globalSearch = document.getElementById('globalSearch');
+  const clearSearch = document.getElementById('clearSearch');
   const fachFilter = document.getElementById('fachFilter');
   const miFilter = document.getElementById('miFilter');
   const categoryFilter = document.getElementById('categoryFilter');
@@ -1142,7 +1153,7 @@ body.short-view .revealed-by-link{
 
 
   function filterContent(){
-    const q = search ? search.value.toLowerCase().trim() : '';
+    const q = ((globalSearch && globalSearch.value) || (search && search.value) || '').toLowerCase().trim();
     const detailSubject = fachFilter ? fachFilter.value : '';
     const subjects = selectedSubjects();
     const quarters = selectedQuarters();
@@ -1153,9 +1164,11 @@ body.short-view .revealed-by-link{
     subjectRows.forEach(row => {
       const fach = row.cells[0]?.innerText || '';
       const anschluss = row.dataset.quarter || row.cells[3]?.innerText || '';
+      const rowText = row.innerText.toLowerCase();
+      const okSearch = !q || rowText.includes(q);
       const okSubject = matchesSubjectList(fach, subjects);
       const okQuarter = matchesQuarterList(anschluss, quarters);
-      row.classList.toggle('hidden-by-filter', !(okSubject && okQuarter));
+      row.classList.toggle('hidden-by-filter', !(okSearch && okSubject && okQuarter));
     });
 
     fachmittelBlocks.forEach(block => {
@@ -1164,9 +1177,11 @@ body.short-view .revealed-by-link{
       let anyVisibleRow = false;
       block.querySelectorAll('.fachmittel-row').forEach(row => {
         const quarterData = row.dataset.quarter || '';
+        const rowText = row.innerText.toLowerCase();
         const okQuarter = !quarters.length || quarters.some(q => quarterData.includes(q));
-        row.classList.toggle('hidden-by-filter', !okQuarter);
-        if(okQuarter) anyVisibleRow = true;
+        const okSearch = !q || rowText.includes(q) || block.innerText.toLowerCase().includes(q);
+        row.classList.toggle('hidden-by-filter', !(okQuarter && okSearch));
+        if(okQuarter && okSearch) anyVisibleRow = true;
       });
       const visibleBlock = okSubject && anyVisibleRow;
       block.classList.toggle('hidden-by-filter', !visibleBlock);
@@ -1194,7 +1209,8 @@ body.short-view .revealed-by-link{
     if(resultCount){
       const subjectText = subjects.length ? subjects.join(', ') : 'alle Fächer';
       const quarterText = quarters.length ? quarters.map(q => quarterLabels[q] || q).join(', ') : 'alle Quartale';
-      resultCount.textContent = `${visibleCards} Praxisbeispiele sichtbar. Fachlehrmittelanschlüsse und Zusatzmaterialien werden mitgefiltert. Fachfilter: ${subjectText}. Quartal: ${quarterText}.`;
+      const searchText = q ? ` Suche: „${q}”.` : '';
+      resultCount.textContent = `${visibleCards} Praxisbeispiele sichtbar. Fachlehrmittelanschlüsse und Zusatzmaterialien werden mitgefiltert. Fachfilter: ${subjectText}. Quartal: ${quarterText}.${searchText}`;
     }
   }
 
@@ -1205,10 +1221,25 @@ body.short-view .revealed-by-link{
       subjectCheckboxes.forEach(cb => cb.checked = false);
       quarterCheckboxes.forEach(cb => cb.checked = false);
       if(fachFilter) fachFilter.value = '';
+      if(search) search.value = '';
+      if(globalSearch) globalSearch.value = '';
       filterContent();
     });
   }
-  if(search) search.addEventListener('input', filterContent);
+  if(search) search.addEventListener('input', () => {
+    if(globalSearch && globalSearch.value !== search.value) globalSearch.value = search.value;
+    filterContent();
+  });
+  if(globalSearch) globalSearch.addEventListener('input', () => {
+    if(search && search.value !== globalSearch.value) search.value = globalSearch.value;
+    filterContent();
+  });
+  if(clearSearch) clearSearch.addEventListener('click', () => {
+    if(search) search.value = '';
+    if(globalSearch) globalSearch.value = '';
+    filterContent();
+    globalSearch?.focus();
+  });
   if(fachFilter) fachFilter.addEventListener('change', filterContent);
   if(miFilter) miFilter.addEventListener('change', filterContent);
   if(categoryFilter) categoryFilter.addEventListener('change', filterContent);

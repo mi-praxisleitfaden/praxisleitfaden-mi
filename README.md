@@ -39,3 +39,8 @@ Der Leitfaden basiert auf dem Aargauer Lehrplan Volksschule, Modul Medien und In
 ## Kurz-/Langansicht
 
 Die Website enthält einen Umschalter zwischen Kurzversion und Langversion. Die Kurzversion zeigt die schnelle Auswahl nach Fach, Quartal und Lernprodukt. Die Langversion zeigt zusätzlich Herleitung, Fachlehrmittelanschlüsse, Kompetenzdetails und Linkverzeichnis.
+
+
+## Nutzung
+
+Der Leitfaden startet in der Kurzversion. Fachfilter, Quartalsfilter und Stichwortsuche können kombiniert werden. Links aus der schnellen Fächerübersicht öffnen die passenden Detailkarten in der Langversion.
