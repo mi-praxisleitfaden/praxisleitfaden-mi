@@ -7,6 +7,9 @@ https://mi-praxisleitfaden.github.io/praxisleitfaden-mi/
 
 ## Stand
 
+Zusätzlich ergänzt: TTG / Technisches und Textiles Gestalten mit Praxisbeispielen zu Werkstattportfolio, Bauanleitung als Algorithmus, Materialcheck, Produktfoto/Werbung und EVA am Werkobjekt.
+
+
 Arbeitsfassung, angepasst auf die neue Jahresplanung Medien und Informatik. Die Bedienung erfolgt wieder über Quartale; genaue Wochenangaben stehen nur als Zusatzhinweise in den Karten.
 
 - 7. Klasse Q1: digitale Grundlagen, Dateien, Teams/OneDrive, erste Connected-3-Anschlüsse
@@ -34,7 +37,7 @@ Für GitHub Pages die Datei `index.html` im Root des Repositorys ersetzen und co
 
 ## Quellenhinweis
 
-Der Leitfaden basiert auf dem Aargauer Lehrplan Volksschule, Modul Medien und Informatik, den Jahresplanungen Connected 3 und Connected 4, der angepassten Jahresplanung Medien und Informatik 7. und 9. Klasse sowie verlinkten Unterrichtsmaterialien.
+Der Leitfaden basiert auf dem Aargauer Lehrplan Volksschule, Modul Medien und Informatik, den Jahresplanungen Connected 3 und Connected 4, der angepassten Jahresplanung Medien und Informatik 7. und 9. Klasse sowie verlinkten Unterrichtsmaterialien sowie öffentlich zugänglichen TTG-Quellen aus dem Aargauer Lehrplan und Technik und Design.
 
 ## Kurz-/Langansicht
 
