@@ -47,3 +47,8 @@ Die Website enthält einen Umschalter zwischen Kurzversion und Langversion. Die 
 ## Nutzung
 
 Der Leitfaden startet in der Kurzversion. Fachfilter, Quartalsfilter und Stichwortsuche können kombiniert werden. Links aus der schnellen Fächerübersicht öffnen die passenden Detailkarten in der Langversion.
+
+
+## Letzte Anpassung
+
+Die schnelle Fächerübersicht wurde kompakter gestaltet: Priorität steht direkt beim Praxisbeispiel, der MI-Anschluss wird nur noch in Quartalen angezeigt.
