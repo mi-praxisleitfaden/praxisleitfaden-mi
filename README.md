@@ -51,4 +51,4 @@ Der Leitfaden startet in der Kurzversion. Fachfilter, Quartalsfilter und Stichwo
 
 ## Letzte Anpassung
 
-Die schnelle Fächerübersicht wurde kompakter gestaltet: Priorität steht direkt beim Praxisbeispiel, der MI-Anschluss wird nur noch in Quartalen angezeigt.
+Die schnelle Fächerübersicht wurde kompakter gestaltet: Priorität steht direkt beim Praxisbeispiel, der MI-Anschluss wird nur noch in Quartalen angezeigt. Zusätzlich zeigt eine kurze AK-Zeile die zentrale Anwendungskompetenz pro Praxisbeispiel.
