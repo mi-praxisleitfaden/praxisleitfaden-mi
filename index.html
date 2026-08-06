@@ -494,102 +494,9 @@ body.short-view .revealed-by-link{
 
     .summary-ak{display:block;color:#456146;font-size:.92rem;margin-top:4px}
     .summary-ak strong{font-weight:800}
-
-
-/* Teams-optimierte responsive Darstellung */
-html, body{
-  width:100%;
-  max-width:100%;
-  overflow-x:hidden;
-}
-.ksab-topline, header, main{
-  width:100%;
-  max-width:100%;
-}
-.header-inner, .brandline, nav.toc, section{
-  min-width:0;
-}
-header h1, header p, .note, .card, .competency-type{
-  overflow-wrap:anywhere;
-}
-section{
-  max-width:100%;
-  overflow-x:auto;
-}
-.sidebar-toggle{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:200;
-  border:1px solid var(--accent-dark);
-  background:var(--accent-dark);
-  color:#fff;
-  border-radius:999px;
-  padding:9px 14px;
-  font:800 13px/1.2 Arial,Helvetica,sans-serif;
-  box-shadow:0 6px 20px rgba(25,29,33,.18);
-  cursor:pointer;
-}
-.sidebar-toggle:hover,
-.sidebar-toggle:focus{
-  background:#004b5b;
-  outline:3px solid rgba(0,138,166,.25);
-  outline-offset:2px;
-}
-body.sidebar-collapsed main{
-  grid-template-columns:minmax(0,1fr);
-}
-body.sidebar-collapsed nav.toc{
-  display:none;
-}
-body.sidebar-collapsed section{
-  grid-column:1;
-}
-body.sidebar-collapsed .competency-types{
-  grid-template-columns:repeat(3,minmax(0,1fr));
-}
-
-@media (max-width:1450px){
-  .ksab-topline{padding:8px 20px}
-  header{padding:24px 22px 28px}
-  .header-inner{gap:24px}
-  .school-logo{width:180px;max-width:18vw}
-  header h1{font-size:34px}
-  header p{font-size:16px}
-  main{
-    grid-template-columns:250px minmax(0,1fr);
-    gap:14px;
-    padding:16px;
-  }
-  nav.toc{padding:11px}
-  section{padding:20px;margin-bottom:16px}
-  .competency-types{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-
-@media (max-width:1180px){
-  .school-logo{width:150px;max-width:16vw}
-  header h1{font-size:31px}
-  main{grid-template-columns:220px minmax(0,1fr);gap:12px;padding:12px}
-  nav.toc .subject-grid{grid-template-columns:1fr}
-  section{padding:18px}
-  h2{font-size:23px}
-}
-
-@media (max-width:1000px){
-  .sidebar-toggle{display:none}
-  body.sidebar-collapsed nav.toc{display:block}
-  body.sidebar-collapsed section{grid-column:auto}
-  body.sidebar-collapsed .competency-types{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-}
-
-@media print{
-  .sidebar-toggle{display:none!important}
-}
-
 </style>
 </head>
 <body>
-<button aria-controls="leitfaden-navigation" aria-expanded="true" class="sidebar-toggle" id="sidebarToggle" type="button">Filter ausblenden</button>
 <div class="ksab-topline"><span>ICT · Unterricht · Zyklus 3</span><span>Praxisleitfaden Medien und Informatik</span></div>
 <header>
 <div class="header-inner">
@@ -601,7 +508,7 @@ body.sidebar-collapsed .competency-types{
 </div>
 </header>
 <main>
-<nav class="toc" id="leitfaden-navigation"><div class="toc-title">Praxisleitfaden MI</div>
+<nav class="toc"><div class="toc-title">Praxisleitfaden MI</div>
 <div class="sidebar-block" id="ansichtsauswahl">
 <h2>Ansicht</h2>
 <p class="small">Kurzversion für schnelle Auswahl, Langversion mit Herleitung und Quellen.</p>
@@ -1557,33 +1464,6 @@ body.sidebar-collapsed .competency-types{
   window.addEventListener('hashchange', () => {
     if(window.location.hash) revealInternalTarget(decodeURIComponent(window.location.hash.slice(1)), false);
   });
-
-
-  // In Teams wird die Seitenleiste standardmässig eingeklappt, damit der Inhalt vollständig sichtbar bleibt.
-  (function(){
-    const toggle = document.getElementById('sidebarToggle');
-    if(!toggle) return;
-    const embedded = window.self !== window.top;
-    const storageKey = embedded ? 'miPraxisleitfadenSidebarTeams' : 'miPraxisleitfadenSidebarBrowser';
-    let collapsed = embedded;
-    try{
-      const saved = localStorage.getItem(storageKey);
-      if(saved === 'collapsed') collapsed = true;
-      if(saved === 'open') collapsed = false;
-    }catch(err){}
-
-    function setSidebarState(isCollapsed){
-      collapsed = isCollapsed;
-      document.body.classList.toggle('sidebar-collapsed', collapsed);
-      toggle.textContent = collapsed ? 'Filter anzeigen' : 'Filter ausblenden';
-      toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      try{ localStorage.setItem(storageKey, collapsed ? 'collapsed' : 'open'); }catch(err){}
-    }
-
-    toggle.addEventListener('click', () => setSidebarState(!collapsed));
-    setSidebarState(collapsed);
-  })();
-
 </script>
 </body>
 </html>
