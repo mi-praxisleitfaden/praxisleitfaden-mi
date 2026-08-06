@@ -58,24 +58,6 @@
       padding:30px 38px 34px;
       border-bottom:6px solid var(--accent);
     }
-    header:before{
-      content:"";
-      position:absolute;
-      right:30px;
-      top:18px;
-      width:260px;
-      height:150px;
-      opacity:.95;
-      background:
-        radial-gradient(circle at 20px 82px,var(--red) 0 26px,transparent 27px),
-        radial-gradient(circle at 76px 55px,var(--orange) 0 32px,transparent 33px),
-        radial-gradient(circle at 128px 82px,var(--yellow) 0 24px,transparent 25px),
-        radial-gradient(circle at 176px 45px,var(--accent2) 0 31px,transparent 32px),
-        radial-gradient(circle at 218px 92px,var(--blue) 0 28px,transparent 29px),
-        radial-gradient(circle at 92px 112px,var(--magenta) 0 27px,transparent 28px),
-        radial-gradient(circle at 160px 122px,var(--purple) 0 19px,transparent 20px);
-      pointer-events:none;
-    }
     header:after{
       content:"";
       position:absolute;
@@ -85,7 +67,23 @@
       height:6px;
       background:linear-gradient(90deg,var(--red) 0 14%,var(--orange) 14% 28%,var(--yellow) 28% 42%,var(--accent2) 42% 58%,var(--accent) 58% 74%,var(--blue) 74% 88%,var(--purple) 88% 100%);
     }
-    .brandline{position:relative;z-index:1;max-width:980px}
+    .header-inner{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:48px;
+    }
+    .brandline{position:relative;z-index:1;max-width:980px;min-width:0}
+    .school-logo{
+      display:block;
+      width:240px;
+      max-width:24vw;
+      height:auto;
+      flex:0 0 auto;
+      object-fit:contain;
+    }
     .brand-kicker{
       margin:0 0 8px;
       font-size:14px;
@@ -297,7 +295,8 @@
     .quick-fachmittel > table{margin:0;border-radius:0;box-shadow:none}
 
     @media (max-width:1000px){
-      header:before{opacity:.28;right:-40px;top:8px}
+      .header-inner{gap:28px}
+      .school-logo{width:200px;max-width:27vw}
       main{display:block;padding:18px}
       nav.toc{position:static;margin-bottom:18px;max-height:none}
       section{margin:0 0 18px;padding:20px}
@@ -305,6 +304,8 @@
     @media (max-width:700px){
       .ksab-topline{justify-content:flex-start;flex-wrap:wrap;padding:8px 18px;gap:12px}
       header{padding:24px 18px 28px}
+      .header-inner{flex-direction:column-reverse;align-items:flex-start;gap:18px}
+      .school-logo{width:180px;max-width:62vw}
       header h1{font-size:30px}
       table{font-size:13px}
       th,td{padding:8px}
@@ -313,7 +314,8 @@
       body{background:#fff;font-size:12px}
       .ksab-topline{display:none}
       header{padding:20px;color:#000;background:#fff;border-bottom:2px solid #000}
-      header:before,header:after{display:none}
+      header:after{display:none}
+      .school-logo{width:170px;max-width:none}
       main{max-width:none;padding:0;display:block}
       section,nav.toc{box-shadow:none;border-color:#999;break-inside:avoid}
       nav.toc,.filters{display:none}
@@ -497,9 +499,12 @@ body.short-view .revealed-by-link{
 <body>
 <div class="ksab-topline"><span>ICT · Unterricht · Zyklus 3</span><span>Praxisleitfaden Medien und Informatik</span></div>
 <header>
+<div class="header-inner">
 <div class="brandline">
 <h1>Praxisleitfaden Medien und Informatik fachübergreifend</h1>
 <p>Nachschlagewerk für Lehrpersonen im Zyklus 3. Ziel: MI-Kompetenzen im Fachunterricht sichtbar stärken, ohne das Fach Medien und Informatik zu ersetzen.</p>
+</div>
+<img class="school-logo" src="data:image/png;base64,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" alt="Schule Aarau"/>
 </div>
 </header>
 <main>
