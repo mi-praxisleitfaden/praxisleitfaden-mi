@@ -494,7 +494,181 @@ body.short-view .revealed-by-link{
 
     .summary-ak{display:block;color:#456146;font-size:.92rem;margin-top:4px}
     .summary-ak strong{font-weight:800}
+
+
+/* Teams-Registerkarte: kompakte Einbettungsansicht ohne horizontales Abschneiden */
+html, body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+main, nav.toc, section, .grid, .competency-types, .card, .competency-type{
+  min-width:0;
+}
+section{
+  overflow-wrap:anywhere;
+}
+img, video, svg{
+  max-width:100%;
+  height:auto;
+}
+th, td, .source-row, .summary-line, .summary-product{
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+.table-scroll{
+  width:100%;
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  margin:14px 0 4px;
+}
+.table-scroll > table{
+  margin:0;
+}
+
+/* Wird automatisch aktiviert, sobald die Seite in Teams oder einem anderen iFrame läuft. */
+html.teams-embedded .ksab-topline{
+  padding:7px 22px;
+  gap:14px;
+}
+html.teams-embedded header{
+  padding:20px 22px 24px;
+}
+html.teams-embedded .header-inner{
+  gap:22px;
+}
+html.teams-embedded header h1{
+  font-size:clamp(29px,3.2vw,38px);
+  max-width:760px;
+}
+html.teams-embedded header p{
+  font-size:15px;
+  max-width:760px;
+}
+html.teams-embedded .school-logo{
+  width:170px;
+  max-width:20vw;
+}
+html.teams-embedded main{
+  display:block;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:16px;
+}
+html.teams-embedded nav.toc{
+  position:static;
+  width:100%;
+  max-height:none;
+  overflow:visible;
+  margin:0 0 16px;
+  padding:0;
+  border-top-width:4px;
+  box-shadow:0 3px 14px rgba(25,29,33,.06);
+}
+html.teams-embedded .embedded-nav-toggle{
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 14px;
+  border:0;
+  background:#fff;
+  color:#101418;
+  font:800 15px/1.2 Arial,Helvetica,sans-serif;
+  text-align:left;
+  cursor:pointer;
+}
+html.teams-embedded .embedded-nav-toggle::after{
+  content:'+';
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  flex:0 0 auto;
+  border-radius:50%;
+  background:var(--soft);
+  color:var(--accent-dark);
+  font-size:20px;
+}
+html.teams-embedded nav.toc.is-open .embedded-nav-toggle::after{
+  content:'−';
+}
+html.teams-embedded .embedded-nav-panel{
+  display:none;
+  padding:0 14px 14px;
+  border-top:1px solid var(--line);
+}
+html.teams-embedded nav.toc.is-open .embedded-nav-panel{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  align-items:start;
+}
+html.teams-embedded .embedded-nav-panel > .toc-title{
+  grid-column:1 / -1;
+  margin:0;
+  padding:12px 0 8px;
+}
+html.teams-embedded .embedded-nav-panel > .sidebar-block{
+  margin:0;
+  padding:10px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+html.teams-embedded .embedded-nav-panel > #fachauswahl,
+html.teams-embedded .embedded-nav-panel > #quartalsauswahl{
+  grid-column:span 2;
+}
+html.teams-embedded .embedded-nav-panel > .sidebar-block:last-child{
+  grid-column:span 2;
+}
+html.teams-embedded section{
+  width:100%;
+  min-width:0;
+  padding:22px;
+  margin:0 0 16px;
+  overflow:hidden;
+}
+html.teams-embedded .competency-types,
+html.teams-embedded .grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));
+}
+html.teams-embedded .table-scroll{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+html.teams-embedded .table-scroll > table{
+  border:0;
+}
+
+@media (max-width:900px){
+  html.teams-embedded .ksab-topline{display:none}
+  html.teams-embedded .header-inner{align-items:flex-start}
+  html.teams-embedded .school-logo{width:140px;max-width:28vw}
+  html.teams-embedded nav.toc.is-open .embedded-nav-panel{display:block}
+  html.teams-embedded .embedded-nav-panel > .sidebar-block{margin:10px 0}
+}
+@media (max-width:650px){
+  html.teams-embedded header{padding:17px 16px 21px}
+  html.teams-embedded .header-inner{display:block}
+  html.teams-embedded .school-logo{width:150px;max-width:70vw;margin-top:16px}
+  html.teams-embedded main{padding:10px}
+  html.teams-embedded section{padding:16px}
+}
+
 </style>
+
+<script>
+  try {
+    if (window.self !== window.top) document.documentElement.classList.add('teams-embedded');
+  } catch (error) {
+    document.documentElement.classList.add('teams-embedded');
+  }
+</script>
 </head>
 <body>
 <div class="ksab-topline"><span>ICT · Unterricht · Zyklus 3</span><span>Praxisleitfaden Medien und Informatik</span></div>
@@ -1465,5 +1639,39 @@ body.short-view .revealed-by-link{
     if(window.location.hash) revealInternalTarget(decodeURIComponent(window.location.hash.slice(1)), false);
   });
 </script>
+
+<script>
+(function(){
+  document.querySelectorAll('table').forEach(function(table){
+    if (table.parentElement && table.parentElement.classList.contains('table-scroll')) return;
+    var wrapper = document.createElement('div');
+    wrapper.className = 'table-scroll';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+
+  if (!document.documentElement.classList.contains('teams-embedded')) return;
+  var nav = document.querySelector('nav.toc');
+  if (!nav || nav.querySelector('.embedded-nav-toggle')) return;
+
+  var panel = document.createElement('div');
+  panel.className = 'embedded-nav-panel';
+  while (nav.firstChild) panel.appendChild(nav.firstChild);
+
+  var toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'embedded-nav-toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.textContent = 'Navigation, Suche und Filter';
+
+  nav.appendChild(toggle);
+  nav.appendChild(panel);
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+
 </body>
 </html>
